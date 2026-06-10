@@ -33,8 +33,8 @@ class RAGPipeline:
             raise ValueError("OPENAI_API_KEY не установлен")
 
         self.model = model
-        self.openai_client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
-
+        self.openai_client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"),
+                                    base_url=os.getenv("OPENAI_BASE_URL"))
         # Инициализация компонентов
         print("Инициализация векторного хранилища...")
         self.vector_store = VectorStore(collection_name=collection_name)

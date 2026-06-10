@@ -48,7 +48,8 @@ class VectorStore:
             print(f"Создана новая коллекция '{collection_name}'")
 
         # OpenAI клиент для создания embeddings
-        self.openai_client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+        self.openai_client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"),
+                                    base_url=os.getenv("OPENAI_BASE_URL"))
 
     def _chunk_text(self, text: str, chunk_size: int = 500, overlap: int = 100) -> List[str]:
         """
