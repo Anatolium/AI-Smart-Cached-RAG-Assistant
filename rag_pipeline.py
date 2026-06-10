@@ -97,7 +97,7 @@ class RAGPipeline:
         """
         response = self.openai_client.chat.completions.create(
             model=self.model,
-            messages=[
+            messages=[  # type: ignore
                 {"role": "system",
                  "content": "Ты - полезный AI ассистент, который отвечает на вопросы на основе предоставленного контекста."},
                 {"role": "user", "content": prompt}
@@ -149,7 +149,9 @@ class RAGPipeline:
 
         # Шаг 2: Поиск релевантных документов
         print("[*] Поиск релевантных документов через API...")
+        # context_docs = self.vector_store.search(user_query, top_k=1)
         context_docs = self.vector_store.search(user_query, top_k=3)
+        # context_docs = self.vector_store.search(user_query, top_k=5)
         print(f"[+] Найдено {len(context_docs)} релевантных документов")
 
         # Шаг 3: Формирование промпта
@@ -201,9 +203,9 @@ if __name__ == "__main__":
 
         # Тестовые запросы
         test_queries = [
-            "Что такое машинное обучение?",
             "Что такое RAG?",
-            "Как работают трансформеры?"
+            "Что такое чанк в RAG-системе?",
+            "Что такое семантическая память?"
         ]
 
         for query in test_queries:

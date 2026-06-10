@@ -4,7 +4,6 @@
 """
 
 import chromadb
-from chromadb.config import Settings
 from typing import List, Dict, Any
 import os
 from openai import OpenAI
@@ -222,7 +221,7 @@ class VectorStore:
             text = f.read()
 
         # Разбиение на чанки
-        chunks = self._chunk_text(text)
+        chunks = self._chunk_text(text, chunk_size=800, overlap=200)
         print(f"Текст разбит на {len(chunks)} чанков")
 
         # Проверка, не загружены ли уже документы
@@ -332,7 +331,7 @@ if __name__ == "__main__":
         vector_store.load_documents("data/docs.txt")
 
     # Поиск
-    results = vector_store.search("Что такое машинное обучение?", top_k=3)
+    results = vector_store.search("Что такое эмбеддинги?", top_k=3)
     print("\nРезультаты поиска:")
     for i, doc in enumerate(results, 1):
         print(f"\n{i}. {doc['text'][:200]}...")
