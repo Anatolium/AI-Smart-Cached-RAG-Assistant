@@ -149,8 +149,8 @@ class RAGPipeline:
 
         # Шаг 2: Поиск релевантных документов
         print("[*] Поиск релевантных документов через API...")
-        # context_docs = self.vector_store.search(user_query, top_k=1)
-        context_docs = self.vector_store.search(user_query, top_k=3)
+        context_docs = self.vector_store.search(user_query, top_k=1)
+        # context_docs = self.vector_store.search(user_query, top_k=3)
         # context_docs = self.vector_store.search(user_query, top_k=5)
         print(f"[+] Найдено {len(context_docs)} релевантных документов")
 

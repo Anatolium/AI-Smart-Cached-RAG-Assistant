@@ -221,6 +221,7 @@ class VectorStore:
             text = f.read()
 
         # Разбиение на чанки
+        # chunks = self._chunk_text(text)
         chunks = self._chunk_text(text, chunk_size=800, overlap=200)
         print(f"Текст разбит на {len(chunks)} чанков")
 
